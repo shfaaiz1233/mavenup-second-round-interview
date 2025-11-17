@@ -6,9 +6,6 @@ import { View } from "react-native";
 import styles from "./styles";
 import { CryptoAsset } from "./types";
 const CurrenciesList = () => {
-    
-  const COINS_LIST_URL =
-    "https://coingeko.burjx.com/coin-prices-all?currency=usd";
   const tabs: ValueWithFeather[] = [
     {
       value: "featured",
@@ -25,19 +22,41 @@ const CurrenciesList = () => {
   ];
   const [selectedTab, setSelectedTab] = useState(tabs[0].value);
   const fetchCoinData = async (page = 1, pageSize = 10) => {
-    const endpoint = `${COINS_LIST_URL}&page=${page}pageSize=${pageSize}`;
     try {
-      const response = await axios.get(endpoint);
-      const data = response.data as CryptoAsset[]
-      console.log("Response", data);
+      const response = await axios.get(
+        "https://coingeko.burjx.com/coin-prices-all",
+        {
+          params: {
+            currency: "usd",
+            page,
+            pageSize,
+          },
+          headers: {
+            "User-Agent":
+              "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0",
+            Accept:
+              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.5",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Cache-Control": "no-cache",
+            Pragma: "no-cache",
+            Connection: "keep-alive",
+            TE: "trailers",
+            "Upgrade-Insecure-Requests": "1",
+          },
+        }
+      );
+
+      const data = response.data as {data: CryptoAsset[]}
+      console.log('Data', data.data.length ? data.data[0] : data.data)
     } catch (err) {
       console.log("Error", err);
     } finally {
     }
   };
   useEffect(() => {
-    fetchCoinData()
-  }, [])
+    fetchCoinData();
+  }, []);
   return (
     <View style={styles.container}>
       <ThemedSegmentedButtons
