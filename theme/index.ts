@@ -30,6 +30,8 @@ export const customTheme = {
     background: "#000000",
     onPrimary: "#000000",
     onBackground: "#FFFFFF",
+    surface: "#2B2B2B",
+    onSurface: "#FFFFFF"
   },
   fonts: typescale,
 };

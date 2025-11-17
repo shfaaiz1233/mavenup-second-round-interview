@@ -1,18 +1,12 @@
-import { StyleSheet, View } from "react-native";
-import { Text } from "react-native-paper";
+import CurrenciesList from "@/components/molecules/currenciesList";
+import { useAppTheme } from "@/theme";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
+  const { colors } = useAppTheme();
   return (
-    <View style={styles.titleContainer}>
-      <Text>Hello world</Text>
-    </View>
+    <SafeAreaView style={{ backgroundColor: colors.background, flex: 1 }}>
+      <CurrenciesList />
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  }
-});

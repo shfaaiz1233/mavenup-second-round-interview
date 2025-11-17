@@ -21,7 +21,7 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="(main)" options={{ headerShown: false }} />
       </Stack>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
     </PaperProvider>
   );
 }
