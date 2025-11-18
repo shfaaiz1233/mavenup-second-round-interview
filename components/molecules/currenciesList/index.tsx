@@ -4,7 +4,7 @@ import ThemedSegmentedButtons from "@/components/atoms/ThemedSegmentedButtons";
 import { ValueWithFeather } from "@/components/atoms/ThemedSegmentedButtons/types";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { FlatList, ScrollView, View } from "react-native";
+import { FlatList, View } from "react-native";
 import styles from "./styles";
 import { CryptoAsset, type CoinsListApiResponse } from "./types";
 const CurrenciesList = () => {
@@ -113,8 +113,8 @@ const CurrenciesList = () => {
     setFilteredAllCoinsList(coinsList);
   }, [coinsList]);
   return (
-    <ScrollView style={styles.container}>
-      <View style={{ flex: 1, gap: 20 }}>
+    <View style={styles.container}>
+      <View style={{ gap: 20 }}>
         <ThemedSegmentedButtons
           values={tabs}
           selectedValue={selectedTab}
@@ -125,16 +125,23 @@ const CurrenciesList = () => {
           data={filteredCoinsList}
           keyExtractor={(item) => item.id}
           ItemSeparatorComponent={() => <View style={{ width: 6 }} />}
-          renderItem={({ item }) => <CoinCard cryptoAsset={item} width={320} />}
+          renderItem={({ item }) => <CoinCard cryptoAsset={item} />}
         />
+      </View>
+      <View style={{ gap: 20 }}>
         <ThemedSegmentedButtons
           values={allCointTab}
           selectedValue={allCoins}
           setSelectedValue={setAllCoins}
         />
-        {coinsList.length && <CoinCardVerical cryptoAsset={coinsList[0]} />}
+        <FlatList
+          data={filteredAllCoinsList}
+          keyExtractor={(item) => item.id}
+          ItemSeparatorComponent={() => <View style={{ height: 6 }} />}
+          renderItem={({ item }) => <CoinCardVerical cryptoAsset={item} />}
+        />
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
