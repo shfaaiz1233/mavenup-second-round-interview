@@ -44,7 +44,6 @@ const CoinCardVerical = React.memo(function CoinCard({
         </View>
       </View>
 
-      {/* Chart */}
       <View style={styles.chartContainerAbsolute}>
         <LineChartComponent
           cryptoAsset={cryptoAsset}
@@ -52,11 +51,10 @@ const CoinCardVerical = React.memo(function CoinCard({
         />
       </View>
 
-      {/* Price at bottom */}
       <Text
         style={[
           styles.priceTextAbsolute,
-          { color: colors.onSurface }, // dynamic color
+          { color: colors.onSurface },
         ]}
       >
         {`$ ${cryptoAsset.currentPrice}`}
