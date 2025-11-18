@@ -10,3 +10,11 @@ export interface CryptoAsset {
   tradingVolume: number;
   symbol: string;
 }
+
+export interface CoinsListApiResponse {
+  data: CryptoAsset[];
+  page: number;
+  pageSize: number;
+  totalItems: number;
+  totalPages: number;
+}

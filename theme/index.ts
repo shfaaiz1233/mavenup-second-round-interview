@@ -31,7 +31,8 @@ export const customTheme = {
     onPrimary: "#000000",
     onBackground: "#FFFFFF",
     surface: "#2B2B2B",
-    onSurface: "#FFFFFF"
+    onSurface: "#FFFFFF",
+    error: "#FF3440"
   },
   fonts: typescale,
 };

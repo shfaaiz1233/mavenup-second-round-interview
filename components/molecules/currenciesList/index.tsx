@@ -1,10 +1,11 @@
+import LineChartComponent from "@/components/atoms/LineChart";
 import ThemedSegmentedButtons from "@/components/atoms/ThemedSegmentedButtons";
 import { ValueWithFeather } from "@/components/atoms/ThemedSegmentedButtons/types";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import styles from "./styles";
-import { CryptoAsset } from "./types";
+import { CryptoAsset, type CoinsListApiResponse } from "./types";
 const CurrenciesList = () => {
   const tabs: ValueWithFeather[] = [
     {
@@ -20,6 +21,7 @@ const CurrenciesList = () => {
       label: "🔻Top Losers",
     },
   ];
+  const [coinsList, setCoinsList] = useState<CryptoAsset[]>([]);
   const [selectedTab, setSelectedTab] = useState(tabs[0].value);
   const fetchCoinData = async (page = 1, pageSize = 10) => {
     try {
@@ -47,8 +49,9 @@ const CurrenciesList = () => {
         }
       );
 
-      const data = response.data as {data: CryptoAsset[]}
-      console.log('Data', data.data.length ? data.data[0] : data.data)
+      const data = response.data as CoinsListApiResponse;
+      setCoinsList(data.data);
+      console.log("Data", data.data.length ? data.data[0] : data.data);
     } catch (err) {
       console.log("Error", err);
     } finally {
@@ -64,6 +67,8 @@ const CurrenciesList = () => {
         selectedValue={selectedTab}
         setSelectedValue={setSelectedTab}
       />
+
+      {coinsList.length && <LineChartComponent cryptoAsset={coinsList[1]} />}
     </View>
   );
 };
