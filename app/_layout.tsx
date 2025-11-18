@@ -7,7 +7,7 @@ import { PaperProvider } from "react-native-paper";
 import "react-native-reanimated";
 
 export const unstable_settings = {
-  anchor: "(main)",
+  anchor: "(crypto-currencies)",
 };
 
 export default function RootLayout() {
@@ -21,7 +21,7 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <PaperProvider theme={customTheme}>
         <Stack>
-          <Stack.Screen name="(main)" options={{ headerShown: false }} />
+          <Stack.Screen name="(crypto-currencies)" options={{ headerShown: false }} />
         </Stack>
         <StatusBar style="light" />
       </PaperProvider>

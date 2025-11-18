@@ -1,7 +1,7 @@
 import type { CryptoAsset } from "@/components/molecules/currenciesList/types";
 import { useAppTheme } from "@/theme";
 import React from "react";
-import { View, type StyleProp, type ViewStyle } from "react-native";
+import { Platform, View, type StyleProp, type ViewStyle } from "react-native";
 import { LineChart } from "react-native-wagmi-charts";
 
 const LineChartComponent = React.memo(function LineChartComponent({
@@ -21,13 +21,9 @@ const LineChartComponent = React.memo(function LineChartComponent({
           value: sp,
           timestamp: i,
         }))}
-        yRange={{
-          min: Math.min(...cryptoAsset.sparkline),
-          max: Math.max(...cryptoAsset.sparkline),
-        }}
       >
         <LineChart
-          yGutter={150}
+          yGutter={Platform.OS === 'ios' ? 120 : 80}
           style={[
             style,
             {
