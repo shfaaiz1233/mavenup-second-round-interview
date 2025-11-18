@@ -2,6 +2,7 @@ import { customTheme } from "@/theme";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { PaperProvider } from "react-native-paper";
 import "react-native-reanimated";
 
@@ -17,11 +18,13 @@ export default function RootLayout() {
   if (!loaded) return null;
 
   return (
-    <PaperProvider theme={customTheme}>
-      <Stack>
-        <Stack.Screen name="(main)" options={{ headerShown: false }} />
-      </Stack>
-      <StatusBar style="light" />
-    </PaperProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <PaperProvider theme={customTheme}>
+        <Stack>
+          <Stack.Screen name="(main)" options={{ headerShown: false }} />
+        </Stack>
+        <StatusBar style="light" />
+      </PaperProvider>
+    </GestureHandlerRootView>
   );
 }
