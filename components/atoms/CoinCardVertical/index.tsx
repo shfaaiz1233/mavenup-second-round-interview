@@ -1,6 +1,6 @@
 import { useAppTheme } from "@/theme";
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { CoinCardProps } from "../CoinCard/types";
 import ImageAvatar from "../ImageAvatar";
 import LineChartComponent from "../LineChart";
@@ -12,7 +12,7 @@ const CoinCardVerical = React.memo(function CoinCard({
   const { colors } = useAppTheme();
 
   return (
-    <TouchableOpacity
+    <Pressable
       disabled={!onPress}
       onPress={onPress}
       style={[styles.card, { backgroundColor: colors.surface }]}
@@ -51,15 +51,10 @@ const CoinCardVerical = React.memo(function CoinCard({
         />
       </View>
 
-      <Text
-        style={[
-          styles.priceTextAbsolute,
-          { color: colors.onSurface },
-        ]}
-      >
+      <Text style={[styles.priceTextAbsolute, { color: colors.onSurface }]}>
         {`$ ${cryptoAsset.currentPrice}`}
       </Text>
-    </TouchableOpacity>
+    </Pressable>
   );
 });
 

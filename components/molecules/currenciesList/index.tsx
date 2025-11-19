@@ -159,30 +159,17 @@ const CurrenciesList = () => {
       fetchAllCoinsData(currentPage + 1, 10);
     }
   };
+  const handleNavigateToDetailsPage = (item: CryptoAsset) => {
+    router.push({
+      pathname: `/(crypto-currencies)/${item.productId}` as RelativePathString,
+      params: {
+        data: JSON.stringify(item),
+      },
+    });
+  };
   useEffect(() => {
     const init = async () => {
-      try {
-        const resp = await axios.get(
-          "https://coingeko.burjx.com/coin-prices-all",
-          {
-            params: { currency: "usd", page: 1, pageSize: 20 },
-          }
-        );
-        const data = resp.data as CoinsListApiResponse;
-        setCoinsList(data.data);
-        setError(null);
-        setFilteredAllCoinsList(data.data.slice(10));
-        setCurrentPage(1);
-        setHasMorePages(1 < data.totalPages*2); // Because I am fetching 20 on inital state for the upper horizontal coins(featured) 
-        setError(null);
-      } catch (err) {
-        console.log("Initial fetch error:", err);
-        setError(
-          (err as any)?.message
-            ? String((err as any).message)
-            : "Failed to load data"
-        );
-      }
+      fetchCoinData();
     };
 
     init();
@@ -246,9 +233,14 @@ const CurrenciesList = () => {
         <FlatList
           horizontal
           data={filteredCoinsList}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item, i) => item.id}
           ItemSeparatorComponent={() => <View style={{ width: 6 }} />}
-          renderItem={({ item }) => <CoinCard cryptoAsset={item} />}
+          renderItem={({ item }) => (
+            <CoinCard
+              cryptoAsset={item}
+              onPress={() => handleNavigateToDetailsPage(item)}
+            />
+          )}
         />
         {error && (
           <View
@@ -293,13 +285,7 @@ const CurrenciesList = () => {
               <CoinCardVerical
                 cryptoAsset={item}
                 onPress={() => {
-                  router.push({
-                    pathname:
-                      `/(crypto-currencies)/${item.productId}` as RelativePathString,
-                    params: {
-                      data: JSON.stringify(item),
-                    },
-                  });
+                  handleNavigateToDetailsPage(item);
                 }}
               />
             )}
