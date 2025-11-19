@@ -72,15 +72,6 @@ const CurrenciesList = () => {
           headers: {
             "User-Agent":
               "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0",
-            Accept:
-              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-            "Accept-Language": "en-US,en;q=0.5",
-            "Accept-Encoding": "gzip, deflate, br",
-            "Cache-Control": "no-cache",
-            Pragma: "no-cache",
-            Connection: "keep-alive",
-            TE: "trailers",
-            "Upgrade-Insecure-Requests": "1",
           },
         }
       );
@@ -100,7 +91,6 @@ const CurrenciesList = () => {
   };
 
   const fetchAllCoinsData = async (page = 1, pageSize = 10) => {
-    console.log("I ran with page", page);
     if (isLoadingMore || !hasMorePages) return;
 
     try {
@@ -116,15 +106,6 @@ const CurrenciesList = () => {
           headers: {
             "User-Agent":
               "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0",
-            Accept:
-              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-            "Accept-Language": "en-US,en;q=0.5",
-            "Accept-Encoding": "gzip, deflate, br",
-            "Cache-Control": "no-cache",
-            Pragma: "no-cache",
-            Connection: "keep-alive",
-            TE: "trailers",
-            "Upgrade-Insecure-Requests": "1",
           },
         }
       );

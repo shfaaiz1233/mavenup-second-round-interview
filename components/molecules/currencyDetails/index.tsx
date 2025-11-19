@@ -29,15 +29,6 @@ const CurrencyDetails = () => {
         headers: {
           "User-Agent":
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0",
-          Accept:
-            "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-          "Accept-Language": "en-US,en;q=0.5",
-          "Accept-Encoding": "gzip, deflate, br",
-          "Cache-Control": "no-cache",
-          Pragma: "no-cache",
-          Connection: "keep-alive",
-          TE: "trailers",
-          "Upgrade-Insecure-Requests": "1",
         },
       });
 
@@ -57,50 +48,24 @@ const CurrencyDetails = () => {
       <RadialBackground />
       <View style={{ minHeight: 600 }}>
         <View style={{ padding: 20 }}>
-          <View
-            style={{
-              flexDirection: "row",
-              width: "100%",
-              justifyContent: "space-between",
-            }}
-          >
+          <View style={styles.coinHeader}>
             <Pressable
-              style={{
-                width: 48,
-                height: 48,
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: colors.surface,
-                borderRadius: 100,
-                alignSelf: "flex-start",
-              }}
+              style={[styles.backButton, { backgroundColor: colors.surface }]}
               onPress={router.back}
             >
               <Feather name="arrow-left" color={colors.onSurface} />
             </Pressable>
-            <View
-              style={{ flexDirection: "row", alignItems: "center", gap: 10 }}
-            >
+            <View style={styles.iconAndTitle}>
               <Avatar.Image source={{ uri: cryptoData.image }} size={24} />
               <Text
-                style={{
-                  alignSelf: "center",
-                  fontWeight: "500",
-                  fontSize: 16,
-                  lineHeight: 24,
-                }}
+                style={styles.cryptoTitleText}
               >{`${cryptoData.name} (${cryptoData.symbol})`}</Text>
             </View>
             <View />
           </View>
           <View>
             <Text
-              style={{
-                fontWeight: "400",
-                fontSize: 32,
-                lineHeight: 48,
-                marginVertical: 20,
-              }}
+              style={styles.currentPriceText}
             >{`$ ${cryptoData.currentPrice}`}</Text>
             <View style={styles.percentageBadge}>
               <Text
@@ -117,14 +82,7 @@ const CurrencyDetails = () => {
             </View>
           </View>
           {loadingData ? (
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                minHeight: 300,
-              }}
-            >
+            <View style={styles.loadingContainer}>
               <ActivityIndicator />
             </View>
           ) : (
@@ -183,9 +141,7 @@ const CurrencyDetails = () => {
             })}
           </View>
         </View>
-
       </View>
-
     </View>
   );
 };
