@@ -55,7 +55,6 @@ const CurrencyDetails = () => {
   return (
     <View>
       <RadialBackground />
-
       <View style={{ minHeight: 600 }}>
         <View style={{ padding: 20 }}>
           <View
@@ -123,7 +122,7 @@ const CurrencyDetails = () => {
                 flex: 1,
                 justifyContent: "center",
                 alignItems: "center",
-                minHeight: 300
+                minHeight: 300,
               }}
             >
               <ActivityIndicator />
@@ -184,7 +183,9 @@ const CurrencyDetails = () => {
             })}
           </View>
         </View>
+
       </View>
+
     </View>
   );
 };
