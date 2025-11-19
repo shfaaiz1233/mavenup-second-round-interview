@@ -18,14 +18,6 @@ import { CryptoAsset, type CoinsListApiResponse } from "./types";
 
 const CurrenciesList = () => {
   const { colors } = useAppTheme();
-  const renderListFooter = () => {
-    if (!isLoadingMore) return null;
-    return (
-      <View style={{ paddingVertical: 20, alignItems: "center" }}>
-        <ActivityIndicator size="large" color={colors.primary} />
-      </View>
-    );
-  };
   const tabs: ValueWithFeather[] = [
     {
       value: "featured",
@@ -148,13 +140,6 @@ const CurrenciesList = () => {
       },
     });
   };
-  useEffect(() => {
-    const init = async () => {
-      fetchCoinData();
-    };
-
-    init();
-  }, []);
 
   const retry = (allCoins = false) => {
     if (allCoins) {
@@ -165,6 +150,22 @@ const CurrenciesList = () => {
       fetchCoinData();
     }
   };
+  const renderListFooter = () => {
+    if (!isLoadingMore) return null;
+    return (
+      <View style={{ paddingVertical: 20, alignItems: "center" }}>
+        <ActivityIndicator size="large" color={colors.primary} />
+      </View>
+    );
+  };
+
+  useEffect(() => {
+    const init = async () => {
+      fetchCoinData();
+    };
+
+    init();
+  }, []);
 
   useEffect(() => {
     const filterCoinsList = (coins: CryptoAsset[]) => {
