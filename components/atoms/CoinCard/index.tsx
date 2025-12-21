@@ -6,7 +6,7 @@ import ImageAvatar from "../ImageAvatar";
 import LineChartComponent from "../LineChart";
 import styles from "./styles";
 import type { CoinCardProps } from "./types";
-// ABC
+
 const CoinCardVerical = React.memo(function CoinCard({
   cryptoAsset,
   onPress,
